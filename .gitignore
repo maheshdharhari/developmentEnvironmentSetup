@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.vsidx
+/.vs/slnx.sqlite
+/.vs/developmentEnvironmentSetup/CopilotIndices/18.0.988.22099
+/.vs/developmentEnvironmentSetup.slnx/config/applicationhost.config
+/.vs/developmentEnvironmentSetup.slnx/copilot-chat/6f69467b/sessions/4aef25d5-aa43-46da-bb11-1c7055c6afa0
+/.vs/developmentEnvironmentSetup.slnx/copilot-chat/6f69467b/sessions/71747832-bc71-402a-b9c7-fcafa90af047
+/.vs/developmentEnvironmentSetup.slnx/copilot-chat/6f69467b/sessions/73442022-1557-4d15-a29b-407bdc406d3d
+/.vs/developmentEnvironmentSetup.slnx/v18/.wsuo
