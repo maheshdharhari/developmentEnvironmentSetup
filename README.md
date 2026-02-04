@@ -1,32 +1,47 @@
 # Development Environment Setup
 
-This repository contains configuration files and scripts to automate the setup of a development environment. It leverages package managers like `winget` and `choco` to install essential software and tools.
+This repository contains configuration files and scripts to automate the setup of a development environment. It leverages package managers like `choco` to install essential software and tools.
 
 ---
 
 ## Files in the Repository
 
-### `app.json`
-This file defines the configuration for installing software and managing WPF-related tweaks and features.
+### `packages.config`
+This file defines a list of software packages to be installed using Chocolatey, a Windows package manager. It simplifies the process of setting up a development environment by automating the installation of required tools.
 
 #### Structure:
-1. **`WPFTweaks`**:
-   - Reserved for specifying any tweaks or customizations related to WPF (Windows Presentation Foundation).
-   - Currently empty.
+- Each `<package>` element specifies a software package to be installed.
+- The `id` attribute corresponds to the Chocolatey package name.
 
-2. **`Install`**:
-   - A list of software applications to be installed.
-   - Each entry specifies the application name and its respective installation commands for:
-     - `winget` (Windows Package Manager)
-     - `choco` (Chocolatey)
+#### Example:
+```
+<packages>
+  <package id="git"/>
+  <package id="notepadplusplus"/>
+  <package id="vlc"/>
+</packages>
+```
 
-3. **`WPFInstall`**:
-   - A list of identifiers for WPF-related installation tasks.
-   - These identifiers can be used in scripts or automation tools to trigger specific installations.
+#### Usage:
+1. **Install Chocolatey**:
+   - Follow the [Chocolatey installation guide](https://chocolatey.org/install).
 
-4. **`WPFFeature`**:
-   - Reserved for specifying WPF-related features.
-   - Currently empty.
+2. **Run the Installation Command**:
+   - Open a terminal and navigate to the directory containing `packages.config`.
+   - Run:
+     ```powershell
+     choco install packages.config -y
+     ```
+
+3. **Update or Uninstall Packages**:
+   - To update all packages:
+     ```powershell
+     choco upgrade packages.config -y
+     ```
+   - To uninstall all packages:
+     ```powershell
+     choco uninstall packages.config -y
+     ```
 
 ---
 
@@ -34,16 +49,11 @@ This file defines the configuration for installing software and managing WPF-rel
 
 To set up your development environment using the configurations in this repository:
 
-1. **Install the necessary package managers**:
-   - **`winget`**: Follow the [official guide](https://docs.microsoft.com/en-us/windows/package-manager/winget/?tabs=cmd) to install Winget.
-   - **`choco`**: Follow the [Chocolatey installation guide](https://chocolatey.org/install) to install Chocolatey.
+1. **Install Chocolatey**:
+   - Follow the [Chocolatey installation guide](https://chocolatey.org/install).
 
 2. **Automate software installation**:
-   - Use the `app.json` file to automate the installation of software.
-   - Run a script or tool that reads the `Install` section and installs the listed applications using `winget` or `choco`.
-
-3. **Customize WPF configurations**:
-   - Modify the `WPFTweaks` and `WPFFeature` sections as needed for your WPF-related configurations.
+   - Use the `packages.config` file to automate the installation of software using Chocolatey.
 
 ---
 
@@ -51,29 +61,30 @@ To set up your development environment using the configurations in this reposito
 
 The following software is configured for installation:
 
-| Software                  | Winget Identifier                     | Chocolatey Identifier       |
-|---------------------------|---------------------------------------|-----------------------------|
-| 7-Zip                     | `7zip.7zip`                          | `7zip`                      |
-| WinRAR                    | `RARLab.WinRAR`                      | `winrar`                    |
-| Visual Studio 2022        | `Microsoft.VisualStudio.2022.Community` | `visualstudio2022community` |
-| Microsoft Teams           | `Microsoft.Teams`                    | `microsoft-teams`           |
-| qBittorrent               | `qBittorrent.qBittorrent`            | `qbittorrent`               |
-| Ditto Clipboard Manager   | `Ditto.Ditto`                        | `ditto`                     |
-| Mozilla Firefox           | `Mozilla.Firefox`                    | `firefox`                   |
-| Git                       | `Git.Git`                            | `git`                       |
-| Brave Browser             | `Brave.Brave`                        | `brave`                     |
-| Notepad++                 | `Notepad++.Notepad++`                | `notepadplusplus`           |
-| VLC Media Player          | `VideoLAN.VLC`                       | `vlc`                       |
-| Google Chrome             | `Google.Chrome`                      | `googlechrome`              |
-| Flameshot Screenshot Tool | `Flameshot.Flameshot`                | `flameshot`                 |
+| Software                  | Chocolatey Identifier       |
+|---------------------------|-----------------------------|
+| Git                       | `git`                      |
+| 7-Zip                     | `7zip`                     |
+| WinRAR                    | `winrar`                   |
+| Visual Studio 2026        | `visualstudio2026enterprise` |
+| Microsoft Teams           | `microsoft-teams`          |
+| qBittorrent               | `qbittorrent`              |
+| Ditto Clipboard Manager   | `ditto`                    |
+| Mozilla Firefox           | `firefox`                  |
+| Brave Browser             | `brave`                    |
+| Notepad++                 | `notepadplusplus`          |
+| VLC Media Player          | `vlc`                      |
+| Google Chrome             | `googlechrome`             |
+| Flameshot Screenshot Tool | `flameshot`                |
+| LINQPad                   | `linqpad`                  |
+| SumatraPDF                | `sumatrapdf`               |
 
 ---
 
 ## Contributing
 
 Feel free to contribute by:
-- Adding new software to the `Install` section.
-- Defining WPF tweaks or features in the `WPFTweaks` and `WPFFeature` sections.
+- Adding new software to the `packages.config` file.
 - Improving the automation process.
 
 ---
