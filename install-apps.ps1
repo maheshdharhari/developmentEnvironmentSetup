@@ -7,27 +7,33 @@ $installed = choco list --local-only | ForEach-Object {
     ($_ -split '\|')[0]
 }
 
-foreach ($app in $apps.apps) {
-    $appName = [string]$app
 
-    if ([string]::IsNullOrWhiteSpace($appName)) {
+for ($i = 0; $i -lt $apps.names.Count; $i++) {
+
+    $appName = [string]$apps.names[$i]
+	$app = [string]$apps.apps[$i]
+
+    if ([string]::IsNullOrWhiteSpace($app)) {
         continue
     }
 
-    if ($installed -contains $appName) {
-        Write-Host "✔ $appName already installed — skipping"
+    if ($installed -contains $app) {
+        Write-Host "[$i] ✔ $app already installed — skipping"
         continue
     }
 
-    $answer = Read-Host "`nInstall $appName ? Press Enter for Yes (Y/n)"
+    $answer = Read-Host "`n[$i] Install $appName ? Press Enter for Yes (Y/n)"
 
     if ($answer -eq '' -or $answer -match '^[Yy]') {
-        Write-Host "Installing $appName..."
-        choco install $appName -y
+        Write-Host "Installing $app..."
+        choco install $app -y
     }
     else {
         Write-Host "Skipped $appName"
     }
 }
+
+
+
 
 Write-Host "`nAll done"
